@@ -1,0 +1,19 @@
+{application, example,
+ [{description, "A gruff example application"},
+  {vsn, "0.1.0"},
+  {registered, [example_sup, add, square]},
+  {mod, { example, []}},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {modules, [example, add_wrk, square_wrk]},
+  {env,[
+        {pool_lst, [
+                    #{ id => add,    size => 8, mod => add_wrk },
+                    #{ id => square, size => 4, mod => square_wrk }
+                   ]}
+       ]}
+ ]}.
+
+
